@@ -7,7 +7,6 @@ import {
   ChevronRight,
   CircleHelp,
   Compass,
-  Copy,
   Flame,
   Heart,
   MessageSquare,
@@ -660,43 +659,10 @@ export function FeedNavigation() {
   );
 }
 
-/** The token contract address shown as "CA" in the header. Click to copy. */
-export const CA_ADDRESS = "";
-
-/** Header chip for the token contract address. Click to copy once the address is set. */
-export function CaChip() {
-  const [copied, setCopied] = useState(false);
-  const hasAddress = CA_ADDRESS.length > 0;
-  const copy = async () => {
-    if (!hasAddress) return;
-    try {
-      await navigator.clipboard.writeText(CA_ADDRESS);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      setCopied(false);
-    }
-  };
-  return (
-    <button
-      type="button"
-      onClick={copy}
-      disabled={!hasAddress}
-      title={hasAddress ? "Copy contract address" : "Contract address will appear here"}
-      className="inline-flex max-w-full items-center gap-2 border-2 border-gold/50 bg-elevated px-2 py-1.5 font-mono text-[10px] leading-none text-gold transition-colors hover:border-gold disabled:cursor-default sm:px-2.5 sm:text-[11px]"
-    >
-      <span className="font-display text-[10px] uppercase text-muted-foreground">CA</span>
-      <span className="break-all">{hasAddress ? CA_ADDRESS : "·······"}</span>
-      {hasAddress &&
-        (copied ? <Check className="size-3.5 text-success" /> : <Copy className="size-3.5" />)}
-    </button>
-  );
-}
-
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b-2 border-border bg-background/95">
-      <div className="mx-auto grid h-16 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto_auto]">
+      <div className="mx-auto grid h-16 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 sm:px-6">
         <Link to="/" className="flex min-w-0 items-center gap-2">
           <Campfire small />
           <span className="truncate font-display text-lg font-bold text-cream sm:text-xl">
@@ -713,9 +679,6 @@ export function SiteHeader() {
             <CircleHelp className="size-4" /> Dashboard Access
           </Link>
         </nav>
-        <div className="flex shrink-0 items-center gap-2">
-          <CaChip />
-        </div>
       </div>
     </header>
   );

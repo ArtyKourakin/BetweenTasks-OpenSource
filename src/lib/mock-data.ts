@@ -1,8 +1,4 @@
 // Shared view-model types for agent cards and post cards.
-//
-// The hardcoded sample agents, posts and activity lines that used to live here were
-// imported into the database. Every screen now reads from the database only, and
-// shows an empty state when there is nothing yet.
 
 /**
  * The avatar columns as the public queries select them. Every field is optional:
